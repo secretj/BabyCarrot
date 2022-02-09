@@ -11,10 +11,19 @@ namespace BabyCarrotTest
     {
         static void Main(string[] args)
         {
-            string temp = "12/08/2015 10:10";
+            string contents = "Hello there, <br> This is SecretJ";
 
-            Console.WriteLine("IsNumeric? : " + temp.IsNumeric());
-            Console.WriteLine("IsDateTime : " + temp.IsDateTime());
+            EmailManager email = new EmailManager("smtp.com", 25, "id", "password");
+            email.From = "sender@test.com";
+            email.To.Add("receiver@test.com");
+            email.Subject = "Subject";
+            email.Body = contents;
+            email.Send();
+
+            email.To.Clear();
+            email.To.Add("receiver2@test.com");
+            email.Subject = "Hi Derek";
+            email.Send();
         }
     }
 }
